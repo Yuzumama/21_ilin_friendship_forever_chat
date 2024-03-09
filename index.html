@@ -9,7 +9,7 @@
 <body>
 
 <!-- コンテンツ表示画面 -->
-<div class="main_back_style">
+<div id="main_back" class="main_back_style_color">
     <div class="setting_btn_back_style">
         <button id="setting_btn" class="setting_btn_style"> ... </button>
     </div>
@@ -33,15 +33,27 @@
 <div id="setting_main_back" class="empty">
     <div class="setting_item_back_style">
         <div class="setting_item_name_style"> User name </div>
-        <textarea id="uname" cols="30" rows="1"></textarea>
+        <textarea id="uname" cols="30" rows="1" class="uname_style"></textarea>
     </div>
     <div class="setting_item_back_style">
         <div class="setting_item_name_style"> Delay time </div>
         <div>
-            <textarea id="delay_min" cols="3" rows="1"></textarea>
+            <textarea id="delay_min" cols="3" rows="1" style="resize: none;"></textarea>
             :
-            <textarea id="delay_sec" cols="3" rows="1"></textarea>
+            <textarea id="delay_sec" cols="3" rows="1" style="resize: none;"></textarea>
         </div>
+    </div>
+    <div class="setting_item_back_style">
+        <div class="setting_item_name_style"> Background </div>
+        <div class="background_image_file_back_style">
+            <div id="background_image_file" class="background_image_file_style"></div>
+            <div class="background_image_file_btn_back_style">
+                <div></div>
+                <button id="background_image_file_upload_btn"> Upload </button>
+                <button id="background_image_file_clear_btn"> Clear </button>
+            </div>
+        </div>
+        <input type="file" id="background_image_file_choose">
     </div>
     <div class="setting_menu_btn_back_style">
         <button id="setting_ok_btn" class="setting_ok_btn_style"> OK </button>
@@ -118,6 +130,32 @@
         localStorage.setItem("chat_user_name", user_name);
     }
 
+    // Click "upload" button of background image
+    $("#background_image_file_upload_btn").on("click", function(){
+        $("#background_image_file_choose").click();
+    });
+
+    // Hide file choose
+    $("#background_image_file_choose").hide();
+    
+    let background_image_curr_file = new File([""], "");
+    let background_image_next_file = new File([""], "");
+    let background_image_file_is_updated = false;
+
+    // Choose background image
+    $("#background_image_file_choose").on("change", function(){
+        background_image_next_file = this.files[0];
+        background_image_file_is_updated = true;
+        $("#background_image_file").text(background_image_next_file.name);
+    });
+
+    // Clear background image
+    $("#background_image_file_clear_btn").on("click", function(){
+        background_image_next_file = new File([""], "");
+        background_image_file_is_updated = true;
+        $("#background_image_file").text("");
+    });
+
     // Press setting button
     $("#setting_btn").on("click", function() {
         
@@ -132,6 +170,9 @@
 
             // Show delay seconds
             $("#delay_sec").val(delay_seconds.toString());
+
+            // Show background image file
+            $("#background_image_file").text(background_image_curr_file.name);
 
             // Show setting menu
             $("#setting_main_back").attr("class", "setting_main_back_style");
@@ -157,6 +198,27 @@
 
         // Show user name
         $("#user_name_hint").text("This message will be sent by " + user_name);
+
+        // Change background image if selected
+        if (background_image_file_is_updated) {
+
+            background_image_curr_file = background_image_next_file;
+
+            // If the background image is empty, then use color style
+            if (background_image_curr_file.name == "") {
+                $("#main_back").attr("class", "main_back_style_color");
+                $("#main_back").css("background-image", "");
+            }
+            else {
+                let reader = new FileReader();
+                reader.onloadend = function() {
+                    $("#main_back").attr("class", "main_back_style_image");
+                    $("#main_back").css("background-image", "url('" + reader.result + "')");
+                };
+                reader.readAsDataURL(background_image_curr_file);
+            }
+            background_image_file_is_updated = false;
+        }
         
         // Hide setting menu
         $("#setting_main_back").attr("class", "empty");
