@@ -170,6 +170,8 @@ textarea.text_style {
     margin-top: 2px;
     font-size: 10px;
     margin-left: 0px;
+    mix-blend-mode: difference;
+    color: white;
 }
 
 /* Send button */
@@ -192,6 +194,9 @@ button.send_btn_style {
     margin-right: 50px;
     font-style: italic;
     text-align: right;
+    mix-blend-mode: difference;
+    color: white;
+
 }
 
 /* setting button */
