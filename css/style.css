@@ -1,0 +1,252 @@
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Empty, for hidden objects */
+.empty {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0px;
+    height: 0px;
+    opacity: 0.0;
+    z-index: -1;
+}
+
+/* main background */
+.main_back_style {
+    width: 600px;
+    height: 600px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: gray;
+    border-style: solid;
+    box-shadow: 0px 0px 20px 10px gray;
+    background-color: rgba(255, 255, 112, 1.0);
+}
+
+/* output */
+.output_style {
+    width: 520px;
+    height: 300px;
+    margin-left: 40px;
+    margin-top: 50px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    border-width: 2px;
+    border-style: double;
+    border-color: rgba(0,0,0,1.0);
+    background-color: rgba(255, 255, 255, 1.0);
+    overflow-y: auto;
+}
+
+/* My message */
+.my_message_back_style {
+    width: 100%;
+    display: flexbox;
+    justify-content: right;
+    align-items: top;
+}
+
+.my_message_style {
+    width: 350px;
+    margin-left: 130px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: rgb(210, 255, 210);
+    text-align: right;
+    border-radius: 10px;
+}
+
+.my_message_operation_back_style {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: top;    
+}
+
+.my_message_status_style {
+    font-size: 10px;
+    margin-right: 20px;
+}
+
+span.my_message_delete_btn_style {
+    border-width: 0px;
+    font-size: 10px;
+    margin-right: 20px;
+    background-color: rgb(240, 240, 240);
+}
+
+/* Other one's message */
+.other_one_message_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: top;
+}
+
+.other_one_name_style {
+    width: 50px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.other_one_message_style {
+    width: 350px;
+    margin-left: 3px;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    background-color: rgb(230, 230, 230);
+    text-align: left;
+    border-radius: 10px;
+}
+
+
+/* user input */
+.user_input_main_style {
+    width: 520px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: top;
+}
+
+/* text */
+textarea.text_style {
+    width: 370px;
+    height: 140px;
+    margin-right: 10px;
+}
+
+.user_name_hint_style {
+    margin-top: 2px;
+    font-size: 10px;
+    margin-left: 0px;
+}
+
+/* Send button */
+button.send_btn_style {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+}
+
+/* chat name */
+.chat_name_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.chat_name_style {
+    margin-right: 50px;
+    font-style: italic;
+    text-align: right;
+}
+
+/* setting button */
+.setting_btn_back_style {
+    position: relative;
+    left: 100%;
+    top: 0%;
+    width: 0px;
+    height: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.setting_btn_style {
+    width: 27px;
+    height: 27px;
+    position: relative;
+    border-radius: 5px;
+    left: -20px;
+    top: 20px;
+    border-width: 1px;
+}
+
+/* setting main background */
+.setting_main_back_style {
+    width: 300px;
+    height: 130px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-200px, -100px);
+    background-color: rgba(220, 220, 220, 1.0);
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    border-style: groove;
+    box-shadow: 0px 0px 10px 0px rgb(50, 50, 50);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+}
+
+.setting_item_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.setting_item_name_style {
+    width: 100px;
+}
+
+.setting_menu_btn_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.setting_ok_btn_style {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-width: 1px;
+}
+
+button.setting_cancel_btn_style {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border-width: 1px;
+}
