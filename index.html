@@ -9,10 +9,12 @@
 <body>
 
 <!-- コンテンツ表示画面 -->
+<!-- Yellow Window -->
 <div id="main_back" class="main_back_style_color">
     <div class="setting_btn_back_style">
         <button id="setting_btn" class="setting_btn_style"> ... </button>
     </div>
+    <!-- The result of Message in the output area  -->
     <div id="output" class="output_style">
     </div>
     <div class="user_main_style">
@@ -24,12 +26,15 @@
             <button id="send" class="send_btn_style"> Send </button>
         </div>
     </div>
+    <!-- Service Name -->
     <div class="chat_name_back_style">
-        <div></div>
+        <!-- Put a space in the left side -->
+        <div></div> 
         <div class="chat_name_style"> Friendship Forever Chat </div>
     </div>
 </div>
 
+<!-- The listbox in the left-upper side -->
 <div id="setting_main_back" class="empty">
     <div class="setting_item_back_style">
         <div class="setting_item_name_style"> User name </div>
@@ -49,6 +54,7 @@
             <div id="background_image_file" class="background_image_file_style"></div>
             <div class="background_image_file_btn_back_style">
                 <div></div>
+                <!-- Upload the image user likes JS: Line 142 -->
                 <button id="background_image_file_upload_btn"> Upload </button>
                 <button id="background_image_file_clear_btn"> Clear </button>
             </div>
@@ -92,24 +98,24 @@
     const dbRef = ref (db, "chat");
     // const analytics = getAnalytics(app);
 
-    // Function to add minutes to current time
+    // Function to add minutes to current time in the gray list box
     function addMin(cur_time, min) {
         // 1 minute = 60 seconds = 60 * 1000 mili seconds
         cur_time.setTime(cur_time.getTime() + min * 60 * 1000);
         return cur_time
     }
 
-    // Function to add seconds to current time
+    // Function to add seconds to current time in the gray list box
     function addSec(cur_time, sec) {
         // 1 second = 1000 mili seconds
         cur_time.setTime(cur_time.getTime() + sec * 1000);
         return cur_time;
     }
 
-    // The array of messages
+    // The array of output messages
     let messages_on_server = new Array();
 
-    // Settings
+    // Settings in the gray list box
     let user_name = "";
     let delay_minutes = 0;
     let delay_seconds = 0;
@@ -117,14 +123,17 @@
     // Load user name from local storage
     if (localStorage.getItem("chat_user_name")) {
         user_name = localStorage.getItem("chat_user_name");
+        // If ~ getItem: to check whether user name has been used or not
 
         // Show user name
         $("#user_name_hint").text("This message will be sent by " + user_name);
+        // $ = means you want to get some information from html
     }
 
     // If no user name found in local storage, then randomly pick one
     else {
         user_name = "user_" + Math.floor(Math.random() * 10000).toString();
+        // .toString: change number to text
 
         // Svae in local storage
         localStorage.setItem("chat_user_name", user_name);
@@ -135,44 +144,59 @@
         $("#background_image_file_choose").click();
     });
 
-    // Hide file choose
+    // Hide the bottom of opening the window of choosing file
     $("#background_image_file_choose").hide();
     
+    // Current image
     let background_image_curr_file = new File([""], "");
+    
+    // The image user is choosing
     let background_image_next_file = new File([""], "");
+    
+    // To check and record whether user want to change the image.
+    // Default is false 
     let background_image_file_is_updated = false;
 
     // Choose background image
     $("#background_image_file_choose").on("change", function(){
+        // The image is stored in memory
         background_image_next_file = this.files[0];
+        // User decided to change the image
         background_image_file_is_updated = true;
+        // Show the name of the image in the gray list box
         $("#background_image_file").text(background_image_next_file.name);
     });
 
     // Clear background image
     $("#background_image_file_clear_btn").on("click", function(){
+        // Means that setting the fake image in memory
         background_image_next_file = new File([""], "");
+        // User decided to change the image
         background_image_file_is_updated = true;
+        // Show the blank of the image in the gray list box
         $("#background_image_file").text("");
     });
 
-    // Press setting button
+    // Press setting button of the gray list box
     $("#setting_btn").on("click", function() {
         
         // Show setting menu if it is not shown
         if ($("#setting_main_back").attr("class") == "empty") {
+            // class = CSS's style
 
-            // Show user name
+            // Show user name when the gray list box shows
             $("#uname").val(user_name);
 
-            // Show delay minutes
+            // Show delay minutes when the gray list box shows
             $("#delay_min").val(delay_minutes.toString());
 
-            // Show delay seconds
+            // Show delay seconds when the gray list box shows
             $("#delay_sec").val(delay_seconds.toString());
+            // $().val = usually means the text which can be typed
 
             // Show background image file
             $("#background_image_file").text(background_image_curr_file.name);
+            // $().text = usually means the text which can't be typed
 
             // Show setting menu
             $("#setting_main_back").attr("class", "setting_main_back_style");
@@ -188,16 +212,15 @@
     $("#setting_ok_btn").on("click", function() {
         // Save user name
         user_name = $("#uname").val();
+        $("#user_name_hint").text("This message will be sent by " + user_name);
         localStorage.setItem("chat_user_name", user_name);
 
         // Save delay minutes
         delay_minutes = parseInt($("#delay_min").val());
+        // parseInt = change from text to interget
 
         // Save delay seconds
         delay_seconds = parseInt($("#delay_sec").val());
-
-        // Show user name
-        $("#user_name_hint").text("This message will be sent by " + user_name);
 
         // Change background image if selected
         if (background_image_file_is_updated) {
@@ -206,17 +229,20 @@
 
             // If the background image is empty, then use color style
             if (background_image_curr_file.name == "") {
-                $("#main_back").attr("class", "main_back_style_color");
+                // $("#main_back").attr("class", "main_back_style_color");
                 $("#main_back").css("background-image", "");
             }
             else {
                 let reader = new FileReader();
                 reader.onloadend = function() {
-                    $("#main_back").attr("class", "main_back_style_image");
+                    // $("#main_back").attr("class", "main_back_style_image");
+
+                    // Upload the image to firebase and ask firebase to show the result
                     $("#main_back").css("background-image", "url('" + reader.result + "')");
                 };
                 reader.readAsDataURL(background_image_curr_file);
             }
+            // Mean finish the setting, and do not set the second time anymore
             background_image_file_is_updated = false;
         }
         
@@ -233,7 +259,9 @@
     // Function to show messages in output
     function showMessages() {
         let cur_time = new Date();
+        // What will show in the output box throught Html
         let h = "";
+        // for loop
         let i = 0;
 
         for (i = 0 ; i < messages_on_server.length ; i += 1) {

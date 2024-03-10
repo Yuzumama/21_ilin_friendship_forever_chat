@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-/* Empty, for hidden objects */
+/* Empty, for hidden list of the right-upper side */
 .empty {
     position: absolute;
     left: 0;
@@ -26,7 +26,7 @@ body {
     z-index: -1;
 }
 
-/* main background */
+/* Yellow Window */
 .main_back_style_color {
     width: 600px;
     height: 600px;
@@ -41,7 +41,7 @@ body {
     background-color: rgba(255, 255, 112, 1.0);
 }
 
-.main_back_style_image {
+/* .main_back_style_image {
     width: 600px;
     height: 600px;
     display: flexbox;
@@ -55,9 +55,10 @@ body {
     background-image: url("");
     background-size: cover;
     background-position: center;
-}
+} */
 
 /* output */
+/* The result of Message in the output area*/
 .output_style {
     width: 520px;
     height: 300px;
@@ -70,11 +71,101 @@ body {
     border-style: double;
     border-color: rgba(0,0,0,1.0);
     background-color: rgba(255, 255, 255, 1.0);
+    /* ダイアログボックスを越えてスクロールする */
     overflow-y: auto;
     opacity: 0.85;
 }
 
-/* My message */
+/* Service Name */
+.chat_name_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.chat_name_style {
+    margin-right: 50px;
+    font-style: italic;
+    text-align: right;
+    mix-blend-mode: difference;
+    color: white;
+
+}
+
+/* The listbox in the left-upper side */
+.setting_main_back_style {
+    width: 300px;
+    height: 160px;
+    display: flexbox;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-200px, -100px);
+    background-color: rgba(220, 220, 220, 1.0);
+    border-width: 1px;
+    border-color: rgb(100, 100, 100);
+    border-style: groove;
+    box-shadow: 0px 0px 10px 0px rgb(50, 50, 50);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+}
+
+.setting_item_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.setting_item_name_style {
+    width: 100px;
+}
+
+.uname_style {
+    width: 180px;
+    resize: none;
+}
+
+.setting_menu_btn_back_style {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background_image_file_style {
+    width: 185px;
+    height: 20px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+button.setting_ok_btn_style {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-width: 1px;
+}
+
+button.setting_cancel_btn_style {
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border-width: 1px;
+}
+
+/* My message after typing */
 .my_message_back_style {
     width: 100%;
     display: flexbox;
@@ -182,22 +273,6 @@ button.send_btn_style {
     opacity: 0.9;
 }
 
-/* chat name */
-.chat_name_back_style {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-}
-
-.chat_name_style {
-    margin-right: 50px;
-    font-style: italic;
-    text-align: right;
-    mix-blend-mode: difference;
-    color: white;
-
-}
 
 /* setting button */
 .setting_btn_back_style {
@@ -221,74 +296,3 @@ button.setting_btn_style {
     border-width: 1px;
 }
 
-/* setting main background */
-.setting_main_back_style {
-    width: 300px;
-    height: 160px;
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-200px, -100px);
-    background-color: rgba(220, 220, 220, 1.0);
-    border-width: 1px;
-    border-color: rgb(100, 100, 100);
-    border-style: groove;
-    box-shadow: 0px 0px 10px 0px rgb(50, 50, 50);
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 20px;
-}
-
-.setting_item_back_style {
-    width: 100%;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-}
-
-.setting_item_name_style {
-    width: 100px;
-}
-
-.uname_style {
-    width: 180px;
-    resize: none;
-}
-
-.setting_menu_btn_back_style {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.background_image_file_style {
-    width: 185px;
-    height: 20px;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
-    white-space: nowrap;
-    overflow: hidden;
-    font-size: 12px;
-}
-
-button.setting_ok_btn_style {
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-right: 20px;
-    margin-top: 20px;
-    border-width: 1px;
-}
-
-button.setting_cancel_btn_style {
-    width: 100px;
-    height: 40px;
-    border-radius: 5px;
-    margin-top: 20px;
-    border-width: 1px;
-}
