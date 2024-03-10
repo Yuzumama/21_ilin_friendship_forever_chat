@@ -261,12 +261,13 @@
         let cur_time = new Date();
         // What will show in the output box throught Html
         let h = "";
-        // for loop
+        // for loop, but for the first item
         let i = 0;
 
         for (i = 0 ; i < messages_on_server.length ; i += 1) {
             let msgKey = messages_on_server[i].key;
             let msg = messages_on_server[i].val();
+            // Change text format to Date & Time format
             let msg_display_time = new Date(msg.displaytime);
 
             // Show my message
@@ -284,10 +285,11 @@
                     }
 
                     else {
-                        // Show unseenable message
+                        // Show unseenable message to the user
                         unseenable_msg = "This message is unseenable.";
                     }
                 }
+                // When user send out the additional message, JS will add the additional code of message to html
                 h += '<div class="my_message_back_style">' +
                         '<div class="my_message_style">' +
                             msg.text + 
@@ -311,7 +313,9 @@
                      '</div>';
             }
         }
+
         $("#output").html(h);
+        // $().html means we want the message of output to follow html format
     }
 
     // Update the output every second
@@ -321,11 +325,12 @@
 
         // If the text is not empty
         if ($("#text").val() != "") {
+            // Get current date and time
             let display_time = new Date();
 
-            // Calculate display time
-            display_time = addMin(display_time, Math.floor($("#delay_min").val()));
-            display_time = addSec(display_time, Math.floor($("#delay_sec").val()));
+            // Calculate display time and delay time
+            display_time = addMin(display_time, delay_minutes);
+            display_time = addSec(display_time, delay_seconds);
 
             const msg = {
                 displaytime : display_time.toString(),
@@ -340,6 +345,8 @@
             $("#text").val("");
         }
     });
+
+    // Check firebase's status when add new message
     onChildAdded (dbRef, function(data){
         const msg = data.val();
         const key = data.key;//unique key
@@ -366,6 +373,8 @@
         // Update the output message       
         showMessages();
     });
+
+    // Check the remove message on the firebase
     onChildRemoved(dbRef, function(data){
         const key = data.key;
 
