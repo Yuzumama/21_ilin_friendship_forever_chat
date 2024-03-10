@@ -239,6 +239,8 @@
 
                     // Upload the image to firebase and ask firebase to show the result
                     $("#main_back").css("background-image", "url('" + reader.result + "')");
+                    $("#main_back").css("background-size", "cover");
+                    $("#main_back").css("background-position", "center");
                 };
                 reader.readAsDataURL(background_image_curr_file);
             }
@@ -374,7 +376,7 @@
         showMessages();
     });
 
-    // Check the remove message on the firebase
+    // Check the remove message on
     onChildRemoved(dbRef, function(data){
         const key = data.key;
 
